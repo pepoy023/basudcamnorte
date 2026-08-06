@@ -1,0 +1,22 @@
+# WordPress uploads
+wp-content/uploads/
+
+# Cache
+wp-content/cache/
+
+# Backup plugins
+wp-content/backup*
+wp-content/updraft/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# IDE
+.vscode/settings.json
