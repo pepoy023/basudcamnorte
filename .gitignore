@@ -20,3 +20,5 @@ Thumbs.db
 
 # IDE
 .vscode/settings.json
+
+wp-config.php
