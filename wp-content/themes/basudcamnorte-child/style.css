@@ -8,3 +8,66 @@
  Version: 1.0.0
  Text Domain: basudcamnorte-child
 */
+
+/* ========================================
+   BASUD HOMEPAGE CARDS
+   ======================================== */
+
+.basud-home-card {
+    padding: 28px 24px;
+    min-height: 220px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.basud-home-card .basud-card-link {
+    margin-top: auto;
+}
+
+.basud-home-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.basud-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background: #ffd900;
+    color: #111111;
+    font-size: 25px;
+}
+
+.basud-home-card h3 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.basud-home-card p {
+    margin: 0 0 20px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.basud-card-link {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.basud-card-link:hover {
+    text-decoration: underline;
+}
