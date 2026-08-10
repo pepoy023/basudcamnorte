@@ -73,7 +73,7 @@ class GOVPH
     add_theme_page('Theme Options', 'Theme Options', 'administrator', 'govph-options', array('GOVPH', 'govph_options_page'),6);
   }
 
-  public function govph_options_page(){
+  public static function govph_options_page(){
   ?>
 <div class="wrap">
 
@@ -302,7 +302,7 @@ jQuery(document).ready(function($) {
 
   // <!-- Enable classic editor for widget-->
   public function govph_enable_widget_classic_editor(){
-    $true = ($this->options['govph_enable_widget_classic_editor'] == 'true' ? "checked" : "");
+    $true = (($this->options['govph_enable_widget_classic_editor'] ?? '') == 'true' ? "checked" : "");
   ?>
 <input type="checkbox" name="govph_options[govph_enable_widget_classic_editor]" value="true" <?php echo $true ?>>
 <span class="description">Check to disabled Gutenberg on widgets</span>
@@ -312,7 +312,7 @@ jQuery(document).ready(function($) {
 
   // <!-- Enable classic editor for post-->
   public function govph_enable_post_classic_editor(){
-    $true = ($this->options['govph_enable_post_classic_editor'] == 'true' ? "checked" : "");
+    $true = (($this->options['govph_enable_post_classic_editor'] ?? '') == 'true' ? "checked" : "");
   ?>
 <input type="checkbox" name="govph_options[govph_enable_post_classic_editor]" value="true" <?php echo $true ?>>
 <span class="description">Check to disabled Gutenberg on posts</span>
@@ -798,7 +798,7 @@ jQuery(document).ready(function($) {
   ?>
 <span class="field-prefix"><?php echo get_site_url(); ?>/ </span>
 <input type="text" name="govph_options[govph_acc_link_contact]"
-    value="<?php echo $this->options['govph_acc_link_contact'] ?>">
+    value="<?php echo $this->options['govph_acc_link_contact'] ?? '' ?>">
 <?php
   }
 
@@ -807,7 +807,7 @@ jQuery(document).ready(function($) {
   ?>
 <span class="field-prefix"><?php echo get_site_url(); ?>/ </span>
 <input type="text" name="govph_options[govph_acc_link_feedback]"
-    value="<?php echo $this->options['govph_acc_link_feedback'] ?>">
+    value="<?php echo $this->options['govph_acc_link_feedback'] ?? '' ?>">
 <?php
   }
 
@@ -815,7 +815,7 @@ jQuery(document).ready(function($) {
   {
   ?>
 <span class="field-prefix"><?php echo get_site_url(); ?>/ </span>
-<input type="text" name="govph_options[govph_acc_link_faq]" value="<?php echo $this->options['govph_acc_link_faq'] ?>">
+<input type="text" name="govph_options[govph_acc_link_faq]" value="<?php echo $this->options['govph_acc_link_faq'] ?? '' ?>">
 <?php
   }
 
@@ -836,7 +836,7 @@ jQuery(document).ready(function($) {
   ?>
 <span class="field-prefix"><?php echo get_site_url(); ?>/ </span>
 <input type="text" name="govph_options[govph_acc_link_search]"
-    value="<?php echo $this->options['govph_acc_link_search'] ?>"><br />
+    value="<?php echo $this->options['govph_acc_link_search'] ?? '' ?>"><br />
 <span class="description">Note: Create a new page by going to "Pages" and click "Add New" button. <br />In the content
     area,
     click "Add
