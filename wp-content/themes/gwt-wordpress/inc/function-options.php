@@ -1058,29 +1058,35 @@ if (!is_array($option)) {
       }
       break;
     case 'govph_banner_title_start':
-      if ($option['govph_slider_fullwidth'] == 'true') {
-        echo '<div class="row">';
+      $sliderFullwidth = $option['govph_slider_fullwidth'] ?? 'false';
+
+      if ($sliderFullwidth == 'true') {
+       echo '<div class="row">';
       }
-      elseif ($option['govph_slider_fullwidth'] != 'true') {
-        echo '';
+      elseif ($sliderFullwidth != 'true') {
+       echo '';
       }
-      break;
+    break;
     case 'govph_banner_title_end':
-      if ($option['govph_slider_fullwidth'] == 'true') {
-        echo '</div>';
-      } 
-      elseif ($option['govph_slider_fullwidth'] != 'true') {
-        echo '';
-      }
-      break;
+  $sliderFullwidth = $option['govph_slider_fullwidth'] ?? 'false';
+
+  if ($sliderFullwidth == 'true') {
+    echo '</div>';
+  }
+  elseif ($sliderFullwidth != 'true') {
+    echo '';
+  }
+  break;
     case 'govph_slider_fullwidth':
-      if ($option['govph_slider_fullwidth'] != 'true') {
-        echo 'display: block;';
-      }
-      else {
-        echo 'display: none;';
-      }
-      break;
+  $sliderFullwidth = $option['govph_slider_fullwidth'] ?? 'false';
+
+  if ($sliderFullwidth != 'true') {
+    echo 'display: block;';
+  }
+  else {
+    echo 'display: none;';
+  }
+  break;
     case 'govph_acc_link_statement':
       if(!empty($option['govph_acc_link_statement'])){
         $value = '';
