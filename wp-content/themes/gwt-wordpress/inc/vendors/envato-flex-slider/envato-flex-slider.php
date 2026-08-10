@@ -21,7 +21,9 @@ function efs_get_slider(){
 	query_posts($efs_query);
 	
 	global $post_id;
-	
+	$count = 0;
+	$slider = '';
+
 	if (have_posts()) : 	
 		
 		$slider = '<div class="orbit" role="region" aria-label="Banner Slider" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
