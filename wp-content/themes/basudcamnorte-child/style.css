@@ -71,3 +71,233 @@
 .basud-card-link:hover {
     text-decoration: underline;
 }
+
+/* =========================================
+   GOVERNMENT SERVICE PAGE
+   LGU BASUD
+   ========================================= */
+
+.basud-service-page {
+    background: #ffffff;
+    padding: 50px 20px 70px;
+}
+
+.basud-service-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* -----------------------------------------
+   SERVICE HEADER
+   ----------------------------------------- */
+
+.basud-service-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.basud-service-label {
+    display: inline-block;
+    background: #ffd21f;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 8px 18px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.basud-service-header h1 {
+    margin: 0;
+    font-size: 38px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+
+/* -----------------------------------------
+   SECTIONS
+   ----------------------------------------- */
+
+.basud-service-section {
+    margin-bottom: 45px;
+}
+
+.basud-service-section h2 {
+    font-size: 25px;
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #ffd21f;
+}
+
+
+/* -----------------------------------------
+   SERVICE OVERVIEW
+   ----------------------------------------- */
+
+.basud-service-content {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* -----------------------------------------
+   SERVICE INFORMATION
+   ----------------------------------------- */
+
+.basud-service-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.basud-service-info-item {
+    background: #f8f8f8;
+    border: 1px solid #e1e1e1;
+    border-left: 4px solid #ffd21f;
+    padding: 18px 20px;
+    border-radius: 4px;
+}
+
+.basud-service-info-item strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.basud-service-info-item span {
+    font-size: 16px;
+}
+
+.basud-service-info-wide {
+    grid-column: 1 / -1;
+}
+
+.basud-who-may-avail {
+    line-height: 1.7;
+}
+
+.basud-who-may-avail ul {
+    margin: 8px 0 0 20px;
+}
+
+
+/* -----------------------------------------
+   TABLES
+   ----------------------------------------- */
+
+.basud-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.basud-service-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.basud-service-table th {
+    background: #ffd21f;
+    color: #000;
+    text-align: left;
+    font-weight: 700;
+    padding: 14px 12px;
+    border: 1px solid #e0b900;
+}
+
+.basud-service-table td {
+    padding: 14px 12px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+.basud-service-table tbody tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.basud-service-table tbody tr:hover {
+    background: #fff8d6;
+}
+
+
+/* -----------------------------------------
+   PROCEDURE TABLE
+   ----------------------------------------- */
+
+.basud-procedure-table {
+    min-width: 1000px;
+}
+
+.basud-procedure-table th {
+    white-space: nowrap;
+}
+
+.basud-step-title {
+    margin-top: 5px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+
+/* -----------------------------------------
+   BACK LINK
+   ----------------------------------------- */
+
+.basud-service-back {
+    margin-top: 35px;
+}
+
+.basud-service-back a {
+    display: inline-block;
+    background: #ffd21f;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 4px;
+}
+
+.basud-service-back a:hover {
+    background: #e8bd00;
+}
+
+
+/* -----------------------------------------
+   MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .basud-service-page {
+        padding: 35px 15px 50px;
+    }
+
+    .basud-service-header h1 {
+        font-size: 28px;
+    }
+
+    .basud-service-section h2 {
+        font-size: 21px;
+    }
+
+    .basud-service-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .basud-service-info-wide {
+        grid-column: auto;
+    }
+
+    .basud-service-table {
+        font-size: 14px;
+    }
+
+    .basud-service-table th,
+    .basud-service-table td {
+        padding: 10px;
+    }
+}
