@@ -41,7 +41,7 @@ function basud_register_services() {
         'labels'       => $labels,
         'public'       => true,
         'show_in_rest' => true,
-        'has_archive'  => false,
+        'has_archive'  => 'services',
 
         'rewrite' => array(
             'slug' => 'services',
@@ -884,4 +884,164 @@ function basud_save_procedures($post_id) {
 add_action(
     'save_post_government_service',
     'basud_save_procedures'
+);
+
+/**
+ * Government Services Search
+ */
+function basud_government_services_search($query) {
+
+    if (
+        !is_admin() &&
+        $query->is_main_query() &&
+        $query->is_post_type_archive('government_service') &&
+        isset($_GET['service_search']) &&
+        $_GET['service_search'] !== ''
+    ) {
+
+        $search = sanitize_text_field(
+            wp_unslash($_GET['service_search'])
+        );
+
+        $query->set('s', $search);
+    }
+}
+
+add_action(
+    'pre_get_posts',
+    'basud_government_services_search'
+);
+
+/**
+ * Government Services - Office / Division Filter
+ */
+function basud_government_services_office_filter($query) {
+
+    if (
+        !is_admin() &&
+        $query->is_main_query() &&
+        $query->is_post_type_archive('government_service') &&
+        isset($_GET['service_office']) &&
+        $_GET['service_office'] !== ''
+    ) {
+
+        $office = sanitize_text_field(
+            wp_unslash($_GET['service_office'])
+        );
+
+        $meta_query = $query->get('meta_query');
+
+        if (!is_array($meta_query)) {
+            $meta_query = array();
+        }
+
+        $meta_query[] = array(
+            'key'     => 'office__division',
+            'value'   => $office,
+            'compare' => '=',
+        );
+
+        $query->set('meta_query', $meta_query);
+    }
+}
+
+add_action(
+    'pre_get_posts',
+    'basud_government_services_office_filter'
+);
+
+/**
+ * Government Services - Classification Filter
+ */
+function basud_government_services_classification_filter($query) {
+
+    if (
+        !is_admin() &&
+        $query->is_main_query() &&
+        $query->is_post_type_archive('government_service') &&
+        isset($_GET['service_classification']) &&
+        $_GET['service_classification'] !== ''
+    ) {
+
+        $classification = sanitize_text_field(
+            wp_unslash($_GET['service_classification'])
+        );
+
+        $meta_query = $query->get('meta_query');
+
+        if (!is_array($meta_query)) {
+            $meta_query = array();
+        }
+
+        $meta_query[] = array(
+            'key'     => 'classification',
+            'value'   => $classification,
+            'compare' => '=',
+        );
+
+        $query->set('meta_query', $meta_query);
+    }
+}
+
+add_action(
+    'pre_get_posts',
+    'basud_government_services_classification_filter'
+);
+
+/**
+ * Government Services - Transaction Type Filter
+ */
+function basud_government_services_transaction_filter($query) {
+
+    if (
+        !is_admin() &&
+        $query->is_main_query() &&
+        $query->is_post_type_archive('government_service') &&
+        isset($_GET['service_transaction']) &&
+        $_GET['service_transaction'] !== ''
+    ) {
+
+        $transaction = sanitize_text_field(
+            wp_unslash($_GET['service_transaction'])
+        );
+
+        $meta_query = $query->get('meta_query');
+
+        if (!is_array($meta_query)) {
+            $meta_query = array();
+        }
+
+        $meta_query[] = array(
+            'key'     => 'type_of_transaction',
+            'value'   => $transaction,
+            'compare' => '=',
+        );
+
+        $query->set('meta_query', $meta_query);
+    }
+}
+
+add_action(
+    'pre_get_posts',
+    'basud_government_services_transaction_filter'
+);
+
+/**
+ * Government Services - Pagination
+ */
+function basud_government_services_per_page($query) {
+
+    if (
+        !is_admin() &&
+        $query->is_main_query() &&
+        $query->is_post_type_archive('government_service')
+    ) {
+
+        $query->set('posts_per_page', 10);
+    }
+}
+
+add_action(
+    'pre_get_posts',
+    'basud_government_services_per_page'
 );

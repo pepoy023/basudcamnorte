@@ -301,3 +301,426 @@
         padding: 10px;
     }
 }
+
+/* =========================================
+   GOVERNMENT SERVICES - HORIZONTAL CARDS
+   ========================================= */
+
+.basud-services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 35px;
+}
+
+.basud-service-card {
+    background: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.basud-service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+.basud-service-card-content {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) auto auto;
+    grid-template-rows: auto auto;
+    column-gap: 18px;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+}
+
+
+/* SERVICE TITLE */
+
+.basud-service-card h2 {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.basud-service-card h2 a {
+    color: #111111;
+    text-decoration: none;
+}
+
+.basud-service-card h2 a:hover {
+    color: #c9a900;
+}
+
+
+/* OFFICE */
+
+.basud-service-office {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 4px 0 0;
+    color: #555555;
+    font-size: 15px;
+}
+
+
+/* CLASSIFICATION / TRANSACTION */
+
+.basud-service-meta {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin: 0;
+}
+
+.basud-service-meta span {
+    display: inline-block;
+    background: #fff4b8;
+    color: #5a4900;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* VIEW SERVICE BUTTON */
+
+.basud-service-view {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    align-self: stretch;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 190px;
+    padding: 0 25px;
+
+    background: #ffd21f;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 700;
+
+    border-radius: 0 8px 8px 0;
+}
+
+.basud-service-view:hover {
+    background: #e8bd00;
+    color: #000000;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .basud-service-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 18px;
+    }
+
+    .basud-service-card h2 {
+        font-size: 20px;
+    }
+
+    .basud-service-office {
+        margin: 0;
+    }
+
+    .basud-service-meta {
+        flex-wrap: wrap;
+    }
+
+    .basud-service-view {
+        min-width: 0;
+        min-height: 45px;
+        border-radius: 5px;
+    }
+
+}
+
+/* =========================================
+   GOVERNMENT SERVICES SEARCH
+   ========================================= */
+
+.basud-service-search {
+    max-width: 800px;
+    margin: 35px auto 40px;
+}
+
+.basud-service-search label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.basud-service-search-row {
+    display: flex;
+    gap: 10px;
+}
+
+.basud-service-search input {
+    flex: 1;
+    padding: 13px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.basud-service-search button {
+    padding: 13px 22px;
+    border: none;
+    border-radius: 5px;
+    background: #ffd21f;
+    color: #000000;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.basud-service-search button:hover {
+    background: #e8bd00;
+}
+
+@media (max-width: 600px) {
+
+    .basud-service-search-row {
+        flex-direction: column;
+    }
+
+    .basud-service-search button {
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   GOVERNMENT SERVICES - OFFICE FILTER
+   ========================================= */
+
+.basud-service-filter {
+    width: 100%;
+    margin: 0 0 35px;
+}
+
+.basud-service-filter label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.basud-service-filter select {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #d6d6d6;
+    border-radius: 6px;
+    background: #ffffff;
+    font-size: 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.basud-service-filter select:focus {
+    outline: none;
+    border-color: #c9a900;
+    box-shadow: 0 0 0 2px rgba(201, 169, 0, 0.12);
+}
+
+.basud-service-filter button {
+    margin-top: 10px;
+    height: 44px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 5px;
+    background: #ffd21f;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.basud-service-filter button:hover {
+    background: #e8bd00;
+}
+
+/* =========================================
+   GOVERNMENT SERVICES - FILTER BAR
+   ========================================= */
+
+.basud-service-filter {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 12px;
+    align-items: end;
+    margin: 0 0 35px;
+}
+
+.basud-service-filter .basud-filter-field {
+    margin: 0;
+}
+
+.basud-service-filter label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.basud-service-filter select {
+    width: 100%;
+    height: 46px;
+    padding: 0 12px;
+    border: 1px solid #d6d6d6;
+    border-radius: 6px;
+    background: #ffffff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.basud-service-filter button {
+    height: 46px;
+    margin: 0;
+    padding: 0 22px;
+    border: none;
+    border-radius: 6px;
+    background: #ffd21f;
+    color: #000000;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.basud-service-filter button:hover {
+    background: #e8bd00;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .basud-service-filter {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .basud-service-filter button {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .basud-service-filter {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================================
+   GOVERNMENT SERVICES - PAGINATION
+   ========================================= */
+
+.basud-service-pagination {
+    margin: 40px 0 10px;
+    text-align: center;
+}
+
+.basud-service-pagination ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.basud-service-pagination li {
+    margin: 0;
+    padding: 0;
+}
+
+.basud-service-pagination a,
+.basud-service-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #222222;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.basud-service-pagination a:hover {
+    background: #ffd21f;
+    border-color: #ffd21f;
+    color: #000000;
+}
+
+.basud-service-pagination .current {
+    background: #ffd21f;
+    border-color: #ffd21f;
+    color: #000000;
+}
+
+.basud-service-pagination .prev,
+.basud-service-pagination .next {
+    padding: 0 16px;
+}
+
+/* =========================================
+   GOVERNMENT SERVICES - FILTER ACTIONS
+   ========================================= */
+
+.basud-filter-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.basud-clear-filters {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    padding: 0 18px;
+    border: 1px solid #d6d6d6;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #555555;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.basud-clear-filters:hover {
+    border-color: #bbbbbb;
+    background: #f5f5f5;
+    color: #222222;
+}
