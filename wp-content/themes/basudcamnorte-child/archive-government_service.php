@@ -97,6 +97,35 @@ get_header();
 
     $office_values = array_unique($office_values);
     sort($office_values);
+
+    $transaction_values = array();
+
+$transaction_query = new WP_Query(array(
+    'post_type'      => 'government_service',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'fields'         => 'ids',
+));
+
+if ($transaction_query->have_posts()) {
+
+    foreach ($transaction_query->posts as $service_id) {
+
+        $transaction = get_field(
+            'type_of_transaction',
+            $service_id
+        );
+
+        if ($transaction) {
+            $transaction_values[] = $transaction;
+        }
+    }
+}
+
+wp_reset_postdata();
+
+$transaction_values = array_unique($transaction_values);
+sort($transaction_values);
     ?>
 
     <p class="basud-filter-field">
@@ -213,43 +242,26 @@ get_header();
     ?>
 
     <select
-        id="basud-service-transaction"
-        name="service_transaction"
-    >
+    id="basud-service-transaction"
+    name="service_transaction"
+>
 
-        <option value="">
-            All Transaction Types
-        </option>
+    <option value="">
+        All Transaction Types
+    </option>
 
-        <option
-            value="G2C"
-            <?php selected($selected_transaction, 'G2C'); ?>
-        >
-            G2C
-        </option>
+    <?php foreach ($transaction_values as $transaction) : ?>
 
         <option
-            value="G2B"
-            <?php selected($selected_transaction, 'G2B'); ?>
+            value="<?php echo esc_attr($transaction); ?>"
+            <?php selected($selected_transaction, $transaction); ?>
         >
-            G2B
+            <?php echo esc_html($transaction); ?>
         </option>
 
-        <option
-            value="G2G"
-            <?php selected($selected_transaction, 'G2G'); ?>
-        >
-            G2G
-        </option>
+    <?php endforeach; ?>
 
-        <option
-            value="G2C/G2B/G2G"
-            <?php selected($selected_transaction, 'G2C/G2B/G2G'); ?>
-        >
-            G2C/G2B/G2G
-        </option>
-
-    </select>
+</select>
 
 </p>
 
