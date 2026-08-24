@@ -913,6 +913,64 @@ add_action(
 );
 
 /**
+ * Government Services - Search ACF Fields
+ */
+function basud_government_services_acf_search(
+    $search,
+    $query
+) {
+
+    if (
+        !is_admin() &&
+        $query->is_main_query() &&
+        $query->is_post_type_archive('government_service') &&
+        isset($_GET['service_search']) &&
+        $_GET['service_search'] !== ''
+    ) {
+
+        global $wpdb;
+
+        $service_search = sanitize_text_field(
+            wp_unslash($_GET['service_search'])
+        );
+
+        $like = '%' . $wpdb->esc_like($service_search) . '%';
+
+        $search = $wpdb->prepare(
+            "
+            AND (
+                {$wpdb->posts}.post_title LIKE %s
+                OR {$wpdb->posts}.post_content LIKE %s
+                OR EXISTS (
+                    SELECT 1
+                    FROM {$wpdb->postmeta}
+                    WHERE {$wpdb->postmeta}.post_id = {$wpdb->posts}.ID
+                    AND {$wpdb->postmeta}.meta_key IN (
+                        'office__division',
+                        'classification',
+                        'type_of_transaction'
+                    )
+                    AND {$wpdb->postmeta}.meta_value LIKE %s
+                )
+            )
+            ",
+            $like,
+            $like,
+            $like
+        );
+    }
+
+    return $search;
+}
+
+add_filter(
+    'posts_search',
+    'basud_government_services_acf_search',
+    10,
+    2
+);
+
+/**
  * Government Services - Office / Division Filter
  */
 function basud_government_services_office_filter($query) {
