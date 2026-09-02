@@ -62,6 +62,57 @@ function basud_register_services() {
 add_action('init', 'basud_register_services');
 
 /**
+ * Register Organizational Units Custom Post Type
+ */
+function basud_register_organizational_units_cpt() {
+
+    $labels = array(
+        'name'                  => 'Organizational Units',
+        'singular_name'         => 'Organizational Unit',
+        'menu_name'             => 'Organizational Units',
+        'name_admin_bar'        => 'Organizational Unit',
+        'add_new'               => 'Add New',
+        'add_new_item'          => 'Add New Organizational Unit',
+        'new_item'              => 'New Organizational Unit',
+        'edit_item'             => 'Edit Organizational Unit',
+        'view_item'             => 'View Organizational Unit',
+        'all_items'             => 'All Organizational Units',
+        'search_items'          => 'Search Organizational Units',
+        'not_found'             => 'No organizational units found',
+        'not_found_in_trash'    => 'No organizational units found in Trash',
+    );
+
+    $args = array(
+        'labels'        => $labels,
+        'public'        => true,
+        'show_in_rest'  => true,
+        'has_archive'   => true,
+
+        'rewrite' => array(
+            'slug' => 'organizational-units',
+        ),
+
+        'supports' => array(
+            'title',
+            'editor',
+            'thumbnail',
+        ),
+
+        'menu_icon' => 'dashicons-building',
+    );
+
+    register_post_type(
+        'organizational_unit',
+        $args
+    );
+}
+
+add_action(
+    'init',
+    'basud_register_organizational_units_cpt'
+);
+
+/**
  * Government Services - Requirements Metabox
  */
 function basud_add_requirements_metabox() {
