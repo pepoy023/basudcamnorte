@@ -86,10 +86,10 @@ function basud_register_organizational_units_cpt() {
         'labels'        => $labels,
         'public'        => true,
         'show_in_rest'  => true,
-        'has_archive'   => true,
+        'has_archive' => 'offices-departments',
 
         'rewrite' => array(
-            'slug' => 'organizational-units',
+        'slug' => 'offices-departments',
         ),
 
         'supports' => array(
