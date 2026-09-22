@@ -69,34 +69,13 @@ get_header();
         ? sanitize_text_field(wp_unslash($_GET['service_office']))
         : '';
 
-    $office_values = array();
-
-    $office_query = new WP_Query(array(
-        'post_type'      => 'government_service',
-        'posts_per_page' => -1,
-        'post_status'    => 'publish',
-        'fields'         => 'ids',
-    ));
-
-    if ($office_query->have_posts()) {
-
-        foreach ($office_query->posts as $service_id) {
-
-            $office = get_field(
-                'office__division',
-                $service_id
-            );
-
-            if ($office) {
-                $office_values[] = $office;
-            }
-        }
-    }
-
-    wp_reset_postdata();
-
-    $office_values = array_unique($office_values);
-    sort($office_values);
+    $office_values = get_posts(array(
+    'post_type'      => 'organizational_unit',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'orderby'        => 'title',
+    'order'          => 'ASC',
+));
 
     $transaction_values = array();
 
@@ -144,14 +123,14 @@ sort($transaction_values);
 
         <?php foreach ($office_values as $office) : ?>
 
-            <option
-                value="<?php echo esc_attr($office); ?>"
-                <?php selected($selected_office, $office); ?>
-            >
-                <?php echo esc_html($office); ?>
-            </option>
+    <option
+        value="<?php echo esc_attr($office->ID); ?>"
+        <?php selected($selected_office, $office->ID); ?>
+    >
+        <?php echo esc_html($office->post_title); ?>
+    </option>
 
-        <?php endforeach; ?>
+<?php endforeach; ?>
 
     </select>
     </p>
@@ -293,9 +272,9 @@ sort($transaction_values);
                 <?php while (have_posts()) : the_post(); ?>
 
                     <?php
-                    $office_division = get_field('office__division');
-                    $classification  = get_field('classification');
-                    $transaction_type = get_field('type_of_transaction');
+                    $organizational_unit = get_field('organizational_unit');
+                    $classification      = get_field('classification');
+                    $transaction_type    = get_field('type_of_transaction');
                     ?>
 
                     <article class="basud-service-card">
@@ -309,10 +288,12 @@ sort($transaction_values);
                             </h2>
 
 
-                            <?php if ($office_division) : ?>
+                            <?php if ($organizational_unit) : ?>
 
                                 <p class="basud-service-office">
-                                    <?php echo esc_html($office_division); ?>
+                                    <?php echo esc_html(
+                                        get_the_title($organizational_unit->ID)
+                                    ); ?>
                                 </p>
 
                             <?php endif; ?>

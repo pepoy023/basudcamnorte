@@ -10,7 +10,7 @@ while (have_posts()) :
 
     // ACF fields
     $service_overview = get_field('service_overview');
-    $office_division = get_field('office__division');
+    $organizational_unit = get_field('organizational_unit');
     $classification   = get_field('classification');
     $transaction_type = get_field('type_of_transaction');
     $who_may_avail    = get_field('who_may_avail');
@@ -82,15 +82,17 @@ while (have_posts()) :
 
             <div class="basud-service-info-grid">
 
-                <?php if ($office_division) : ?>
+                <?php if ($organizational_unit) : ?>
 
                     <div class="basud-service-info-item">
 
                         <strong>Office / Division</strong>
 
-                        <span>
-                            <?php echo esc_html($office_division); ?>
-                        </span>
+                    <span>
+                        <?php echo esc_html(
+                        get_the_title($organizational_unit->ID)
+                        ); ?>
+                    </span>
 
                     </div>
 

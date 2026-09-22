@@ -992,19 +992,30 @@ function basud_government_services_acf_search(
             AND (
                 {$wpdb->posts}.post_title LIKE %s
                 OR {$wpdb->posts}.post_content LIKE %s
+
                 OR EXISTS (
                     SELECT 1
                     FROM {$wpdb->postmeta}
                     WHERE {$wpdb->postmeta}.post_id = {$wpdb->posts}.ID
                     AND {$wpdb->postmeta}.meta_key IN (
-                        'office__division',
                         'classification',
                         'type_of_transaction'
                     )
                     AND {$wpdb->postmeta}.meta_value LIKE %s
                 )
+
+                OR EXISTS (
+                    SELECT 1
+                    FROM {$wpdb->postmeta} AS service_org_meta
+                    INNER JOIN {$wpdb->posts} AS org_unit
+                        ON org_unit.ID = service_org_meta.meta_value
+                    WHERE service_org_meta.post_id = {$wpdb->posts}.ID
+                    AND service_org_meta.meta_key = 'organizational_unit'
+                    AND org_unit.post_title LIKE %s
+                )
             )
             ",
+            $like,
             $like,
             $like,
             $like
@@ -1034,9 +1045,13 @@ function basud_government_services_office_filter($query) {
         $_GET['service_office'] !== ''
     ) {
 
-        $office = sanitize_text_field(
-            wp_unslash($_GET['service_office'])
+        $office = absint(
+            $_GET['service_office']
         );
+
+        if (!$office) {
+            return;
+        }
 
         $meta_query = $query->get('meta_query');
 
@@ -1045,7 +1060,7 @@ function basud_government_services_office_filter($query) {
         }
 
         $meta_query[] = array(
-            'key'     => 'office__division',
+            'key'     => 'organizational_unit',
             'value'   => $office,
             'compare' => '=',
         );
