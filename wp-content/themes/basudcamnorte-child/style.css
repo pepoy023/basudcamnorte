@@ -926,3 +926,83 @@
     text-transform: uppercase;
     opacity: 0.65;
 }
+
+/* =========================================
+   ORGANIZATIONAL UNIT GOVERNMENT SERVICES
+   ========================================= */
+
+.organizational-unit-services {
+    margin-top: 50px;
+}
+
+.organizational-unit-services-list {
+    display: grid;
+    gap: 14px;
+}
+
+.organizational-unit-service {
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    background: #fff;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.organizational-unit-service:hover {
+    border-color: #cfcfcf;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+.organizational-unit-service-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 20px 22px;
+    text-decoration: none;
+}
+
+.organizational-unit-service-content {
+    min-width: 0;
+}
+
+.organizational-unit-service-name {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.organizational-unit-service-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 9px;
+}
+
+.organizational-unit-service-meta span {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 4px;
+    background: #f3f3f3;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.organizational-unit-service-arrow {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    opacity: 0.55;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.organizational-unit-service:hover
+.organizational-unit-service-arrow {
+    transform: translateX(4px);
+    opacity: 0.9;
+}

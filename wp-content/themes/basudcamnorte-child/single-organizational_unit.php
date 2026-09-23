@@ -405,6 +405,112 @@ usort($child_units, function ($a, $b) {
 
 <?php endif; ?>
 
+<?php
+/**
+ * Get government services under this organizational unit.
+ */
+$current_unit_id = get_the_ID();
+
+$government_services = get_posts(array(
+    'post_type'      => 'government_service',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'meta_key'       => 'organizational_unit',
+    'meta_value'     => $current_unit_id,
+    'orderby'        => 'title',
+    'order'          => 'ASC',
+));
+?>
+
+<?php if (!empty($government_services)) : ?>
+
+    <section class="organizational-unit-section organizational-unit-services">
+
+        <h2>Government Services</h2>
+
+        <div class="organizational-unit-services-list">
+
+            <?php foreach ($government_services as $service) : ?>
+
+                <?php
+                $service_classification = get_field(
+                    'classification',
+                    $service->ID
+                );
+
+                $service_transaction = get_field(
+                    'type_of_transaction',
+                    $service->ID
+                );
+                ?>
+
+                <article class="organizational-unit-service">
+
+                    <a
+                        href="<?php echo esc_url(
+                            get_permalink($service->ID)
+                        ); ?>"
+                        class="organizational-unit-service-link"
+                    >
+
+                        <div class="organizational-unit-service-content">
+
+                            <span class="organizational-unit-service-name">
+                                <?php echo esc_html(
+                                    get_the_title($service->ID)
+                                ); ?>
+                            </span>
+
+                            <?php if (
+                                $service_classification ||
+                                $service_transaction
+                            ) : ?>
+
+                                <div class="organizational-unit-service-meta">
+
+                                    <?php if ($service_classification) : ?>
+
+                                        <span>
+                                            <?php echo esc_html(
+                                                $service_classification
+                                            ); ?>
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                    <?php if ($service_transaction) : ?>
+
+                                        <span>
+                                            <?php echo esc_html(
+                                                $service_transaction
+                                            ); ?>
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </div>
+
+                            <?php endif; ?>
+
+                        </div>
+
+                        <span class="organizational-unit-service-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                </article>
+
+            <?php endforeach; ?>
+
+        </div>
+
+    </section>
+
+<?php endif; ?>
+
+
             <?php endwhile; ?>
 
         <?php endif; ?>
