@@ -30,6 +30,60 @@ get_header();
                 $office_hours = get_field('office_hours');
                 ?>
 
+                <nav class="organizational-unit-breadcrumbs" aria-label="Breadcrumb">
+
+    <a href="<?php echo esc_url(
+        get_post_type_archive_link('organizational_unit')
+    ); ?>">
+        Offices & Departments
+    </a>
+
+    <?php
+    $breadcrumb_parents = array();
+    $breadcrumb_parent = $parent;
+
+    while (
+        $breadcrumb_parent &&
+        is_object($breadcrumb_parent)
+    ) {
+
+        $breadcrumb_parents[] = $breadcrumb_parent;
+
+        $breadcrumb_parent = get_field(
+            'parent_organizational_unit',
+            $breadcrumb_parent->ID
+        );
+    }
+
+    $breadcrumb_parents = array_reverse($breadcrumb_parents);
+    ?>
+
+    <?php foreach ($breadcrumb_parents as $breadcrumb_item) : ?>
+
+        <span class="organizational-unit-breadcrumb-separator">
+            →
+        </span>
+
+        <a href="<?php echo esc_url(
+            get_permalink($breadcrumb_item->ID)
+        ); ?>">
+            <?php echo esc_html(
+                get_the_title($breadcrumb_item->ID)
+            ); ?>
+        </a>
+
+    <?php endforeach; ?>
+
+    <span class="organizational-unit-breadcrumb-separator">
+        →
+    </span>
+
+    <span class="organizational-unit-breadcrumb-current">
+        <?php the_title(); ?>
+    </span>
+
+</nav>
+
                 <header class="organizational-unit-header">
 
                     <?php if (has_post_thumbnail()) : ?>
@@ -509,6 +563,50 @@ $government_services = get_posts(array(
     </section>
 
 <?php endif; ?>
+
+        <!-- PARENT ORGANIZATION NAVIGATION -->
+
+        <?php
+$current_parent = get_field(
+    'parent_organizational_unit',
+    get_the_ID()
+);
+?>
+
+<?php if (
+    $current_parent &&
+    is_object($current_parent)
+) : ?>
+
+    <div class="organizational-unit-parent-navigation">
+
+        <a
+            href="<?php echo esc_url(
+                get_permalink($current_parent->ID)
+            ); ?>"
+            class="organizational-unit-parent-link"
+        >
+            ← Back to <?php echo esc_html(
+                get_the_title($current_parent->ID)
+            ); ?>
+        </a>
+
+    </div>
+
+<?php endif; ?>
+
+<div class="organizational-unit-directory-navigation">
+
+    <a
+        href="<?php echo esc_url(
+    home_url('/offices-departments/')
+); ?>"
+        class="organizational-unit-directory-link"
+    >
+        ← Back to Offices & Departments
+    </a>
+
+</div>
 
 
             <?php endwhile; ?>

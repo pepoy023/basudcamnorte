@@ -1006,3 +1006,66 @@
     transform: translateX(4px);
     opacity: 0.9;
 }
+
+/* =========================================
+   ORGANIZATIONAL UNIT BREADCRUMBS
+   ========================================= */
+
+.organizational-unit-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 28px;
+    font-size: 0.85rem;
+    line-height: 1.5; 
+}
+
+.organizational-unit-breadcrumbs a {
+    text-decoration: none;
+}
+
+.organizational-unit-breadcrumb-separator {
+    opacity: 0.45;
+}
+
+.organizational-unit-breadcrumb-current {
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+/* =========================================
+   ORGANIZATIONAL UNIT PARENT NAVIGATION
+   ========================================= */
+
+.organizational-unit-parent-navigation {
+    margin-top: 45px;
+    padding-top: 25px;
+    border-top: 1px solid #e1e1e1;
+}
+
+.organizational-unit-parent-link {
+    display: inline-block;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* =========================================
+   ORGANIZATIONAL UNIT DIRECTORY NAVIGATION
+   ========================================= */
+
+.organizational-unit-directory-navigation {
+    margin-top: 20px;
+}
+
+.organizational-unit-directory-link {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+.organizational-unit-directory-link:hover {
+    opacity: 1;
+}
