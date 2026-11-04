@@ -9,6 +9,7 @@ get_header();
 
 <main class="basud-single-post-page">
 
+
     <div class="basud-single-post-container">
 
         <?php if (have_posts()) : ?>
@@ -20,7 +21,16 @@ get_header();
                     <!-- POST HEADER -->
 
                     <header class="basud-single-post-header">
+                        <!-- TOP BACK TO POSTS -->
 
+                        <div class="basud-single-post-navigation-top">
+
+                        <a href="<?php echo esc_url(home_url('/posts/')); ?>">
+                            ← Back to Posts
+                        </a>
+
+                        </div>
+                        
                         <h1>
                             <?php the_title(); ?>
                         </h1>
@@ -38,6 +48,7 @@ get_header();
                         </div>
 
                     </header>
+
 
                     <!-- FEATURED IMAGE -->
 
@@ -61,15 +72,15 @@ get_header();
 
             <?php endwhile; ?>
 
-            <!-- BACK TO ANNOUNCEMENTS -->
+<!-- BACK TO POSTS -->
 
-            <div class="basud-single-post-navigation">
+<div class="basud-single-post-navigation">
 
-                <a href="<?php echo esc_url(home_url('/announcements/')); ?>">
-                    ← Back to Announcements
-                </a>
+    <a href="<?php echo esc_url(home_url('/posts/')); ?>">
+        ← Back to Posts
+    </a>
 
-            </div>
+</div>
 
         <?php else : ?>
 
